@@ -175,6 +175,26 @@ public class BluetoothFragment extends Fragment {
 	public static Boolean isBTConected() {
 		return isBTConected;
 	}
+	
+	/**
+	 * Metodo para enviar paquetes por Bluetooth
+	 * 
+	 * @param msg
+	 *            mensaje a enviar
+	 * @since 1.0.0
+	 */
+	public static void enviarPaqBT(String msg) {
+		if (isBTConected == true) {
+			for (Byte letra : msg.getBytes())
+				try {
+					mOutStream.write(letra);
+
+					Log.d("Mensaje Bluetooth", "Enviando dato = " + msg);
+				} catch (IOException e) {
+					Log.d("Mensaje Bluetooth", "No se envio dato = " + msg);
+				}
+		}
+	}
 
 	/**
 	 * Listener para la comunicación con otras Activity

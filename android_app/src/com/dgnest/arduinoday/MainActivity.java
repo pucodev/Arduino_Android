@@ -1,17 +1,33 @@
 package com.dgnest.arduinoday;
 
+import static com.dgnest.utilitarios.BluetoothFragment.enviarPaqBT;
+import static com.dgnest.utilitarios.BluetoothFragment.isBTConected;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
+
+	// variables
+	private Button mSend;
+	private EditText etData2Send;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		mSend = (Button) this.findViewById(R.id.buttonSend);
+		etData2Send = (EditText) this.findViewById(R.id.etData2Send);
+
+		mSend.setOnClickListener(this);
 
 	}
 
@@ -33,4 +49,21 @@ public class MainActivity extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+
+	@Override
+	public void onClick(View v) {
+		if (v == mSend) {
+			String msg = etData2Send.getText().toString();
+			// enviamos paquete si estamos conectados
+			if (isBTConected()) {
+				enviarPaqBT(msg);
+				etData2Send.setText("");
+				
+			} else {
+				Toast.makeText(this, "No estas conectado", Toast.LENGTH_SHORT)
+						.show();
+			}
+		}
+	}
+
 }
