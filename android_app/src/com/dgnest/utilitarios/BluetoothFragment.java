@@ -1,5 +1,8 @@
 package com.dgnest.utilitarios;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -8,6 +11,7 @@ import java.util.UUID;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,6 +43,12 @@ public class BluetoothFragment extends Fragment {
 	// variables for BT devices
 	private List<BluetoothDevice> device = new ArrayList<BluetoothDevice>();
 	private List<String> nameDevice = new ArrayList<String>();
+	private BluetoothDevice actualDevice = null;
+	private static Boolean isBTConected = false;
+
+	private static BluetoothSocket mSocket;
+	private static OutputStream mOutStream;
+	private static InputStream mInStream;
 
 	// listener
 	BTListener listener = null;
@@ -113,6 +123,57 @@ public class BluetoothFragment extends Fragment {
 			listener.onFinishedLoadBT(nameDevice);
 		}
 
+	}
+
+	/**
+	 * conectar con el dispositivo seleccionado
+	 * 
+	 * @param idDevice
+	 *            posición del dispositivo a conectarse
+	 * @since 1.0.0
+	 */
+	public void connectDevice(int idDevice) {
+		actualDevice = device.get(idDevice);
+
+		BluetoothSocket tmp = null;
+		try {
+			tmp = actualDevice
+					.createInsecureRfcommSocketToServiceRecord(MY_UUID);
+		} catch (IOException e) {
+		}
+
+		mSocket = tmp;
+		try {
+			mSocket.connect();
+			isBTConected = true;
+			iniConection();
+		} catch (IOException e) {
+			isBTConected = false;
+		}
+	}
+
+	private void iniConection() {
+		InputStream tmpIn = null;
+		OutputStream tmpOut = null;
+		try {
+			tmpIn = mSocket.getInputStream();
+			tmpOut = mSocket.getOutputStream();
+		} catch (IOException e) {
+			Log.e("Error", e + "");
+		}
+
+		mInStream = tmpIn;
+		mOutStream = tmpOut;
+	}
+
+	/**
+	 * Aseguramos que estamos conectado
+	 * 
+	 * @return si esta conectado con algun dispositivo
+	 * @since 1.0.0
+	 */
+	public static Boolean isBTConected() {
+		return isBTConected;
 	}
 
 	/**

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Arduino day</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_conect">Conectar</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>
