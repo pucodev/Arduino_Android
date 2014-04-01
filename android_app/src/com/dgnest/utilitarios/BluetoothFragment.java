@@ -39,6 +39,9 @@ public class BluetoothFragment extends Fragment {
 	// variables for BT devices
 	private List<BluetoothDevice> device = new ArrayList<BluetoothDevice>();
 	private List<String> nameDevice = new ArrayList<String>();
+	
+	// listener
+	BTListener listener = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,6 +107,21 @@ public class BluetoothFragment extends Fragment {
 			nameDevice.add(mBluetoothDevice.getName());
 		}
 
+	}
+	
+	/**
+	 * Listener para la comunicación con otras Activity
+	 * 
+	 * @author Jorge
+	 * @version 1.0.0
+	 * @since 1.0.0
+	 */
+	public interface BTListener {
+		void onFinishedLoadBT(List<String> nombres);
+	}
+
+	public void setBTListener(BTListener listener) {
+		this.listener = listener;
 	}
 
 	private void MyLog(String msg) {
