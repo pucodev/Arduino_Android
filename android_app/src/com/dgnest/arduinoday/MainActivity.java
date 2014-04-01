@@ -1,7 +1,9 @@
 package com.dgnest.arduinoday;
 
+import static com.dgnest.utilitarios.BluetoothFragment.disableBT;
 import static com.dgnest.utilitarios.BluetoothFragment.enviarPaqBT;
 import static com.dgnest.utilitarios.BluetoothFragment.isBTConected;
+import static com.dgnest.utilitarios.BluetoothFragment.stopBT;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -63,6 +65,15 @@ public class MainActivity extends Activity implements OnClickListener {
 				Toast.makeText(this, "No estas conectado", Toast.LENGTH_SHORT)
 						.show();
 			}
+		}
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (isFinishing()) {
+			stopBT();
+			disableBT();
 		}
 	}
 

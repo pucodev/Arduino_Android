@@ -195,6 +195,35 @@ public class BluetoothFragment extends Fragment {
 				}
 		}
 	}
+	
+	/**
+	 * Detenemos y desconectamos BT
+	 * 
+	 * @since 1.0.0
+	 */
+	public static void stopBT() {
+		isBTConected = false;
+		try {
+			if (mInStream != null)
+				mInStream.close();
+
+			if (mSocket != null)
+				mSocket.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Apagamos Bluetooth
+	 * 
+	 * @since 1.0.0
+	 */
+	public static void disableBT() {
+		if (mBluetoothAdapter.isEnabled())
+			mBluetoothAdapter.disable();
+	}
 
 	/**
 	 * Listener para la comunicación con otras Activity
