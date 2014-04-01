@@ -29,6 +29,8 @@
         </activity>
         <activity android:name="com.dgnest.arduinoday.LedActivity" >
         </activity>
+        <activity android:name="com.dgnest.arduinoday.CarActivity" >
+        </activity>
     </application>
 
 </manifest>

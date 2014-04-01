@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements OnClickListener {
 
 	// variables
-	private Button mSend, mLed;
+	private Button mSend, mLed, mCar;
 	private EditText etData2Send;
 
 	@Override
@@ -28,11 +28,12 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		mSend = (Button) this.findViewById(R.id.buttonSend);
 		mLed = (Button) this.findViewById(R.id.btnLed);
+		mCar = (Button) this.findViewById(R.id.btnCar);
 		etData2Send = (EditText) this.findViewById(R.id.etData2Send);
 
 		mSend.setOnClickListener(this);
 		mLed.setOnClickListener(this);
-
+		mCar.setOnClickListener(this);
 	}
 
 	@Override
@@ -73,8 +74,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			Intent ledIntent = new Intent(getApplication(), LedActivity.class);
 			startActivity(ledIntent);
 		}
+		
+		if(v == mCar){
+			Intent ledIntent = new Intent(getApplication(), CarActivity.class);
+			startActivity(ledIntent);
+		}
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
