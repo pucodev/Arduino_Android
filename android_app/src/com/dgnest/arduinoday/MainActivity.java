@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements OnClickListener {
 
 	// variables
-	private Button mSend;
+	private Button mSend, mLed;
 	private EditText etData2Send;
 
 	@Override
@@ -27,9 +27,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 
 		mSend = (Button) this.findViewById(R.id.buttonSend);
+		mLed = (Button) this.findViewById(R.id.btnLed);
 		etData2Send = (EditText) this.findViewById(R.id.etData2Send);
 
 		mSend.setOnClickListener(this);
+		mLed.setOnClickListener(this);
 
 	}
 
@@ -65,6 +67,11 @@ public class MainActivity extends Activity implements OnClickListener {
 				Toast.makeText(this, "No estas conectado", Toast.LENGTH_SHORT)
 						.show();
 			}
+		}
+		
+		if(v == mLed){
+			Intent ledIntent = new Intent(getApplication(), LedActivity.class);
+			startActivity(ledIntent);
 		}
 	}
 	

@@ -69,7 +69,7 @@ git checkout -f step-?
 ### step-9
 
 - Creamos nueva activity en android-app
-	- LedActivity y led-layout
+	- LedActivity y led_layout
 - Prendemos y apagamos led por comandos recibidos por serial
 
 ### step-10

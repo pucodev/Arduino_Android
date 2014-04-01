@@ -2,24 +2,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <EditText
-        android:id="@+id/etData2Send"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10" >
+        android:layout_marginTop="8dp" >
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/etData2Send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" >
 
-    <Button
-        android:id="@+id/buttonSend"
-        android:layout_width="wrap_content"
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Enviar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Enviar" />
+        android:layout_marginTop="8dp" >
+
+        <Button
+            android:id="@+id/btnLed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Led Activity" />
+
+    </LinearLayout>
 
 </LinearLayout>

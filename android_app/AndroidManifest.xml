@@ -27,6 +27,8 @@
         </activity>
         <activity android:name="com.dgnest.arduinoday.BluetoothList" >
         </activity>
+        <activity android:name="com.dgnest.arduinoday.LedActivity" >
+        </activity>
     </application>
 
 </manifest>
